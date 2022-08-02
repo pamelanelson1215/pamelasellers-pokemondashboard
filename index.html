@@ -54,9 +54,9 @@
       <div id="layoutSidenav_content">
         <main>
           <div class="container-fluid px-4">
-            <h1 class="mt-4">Dashboard</h1>
+            <h1 class="mt-4">Top Three</h1>
             <ol class="breadcrumb mb-4">
-              <li class="breadcrumb-item active">Dashboard</li>
+              <li class="breadcrumb-item active">Piplup</li>
             </ol>
             <div class="row">
               <div class="col-xl-3 col-md-6">
@@ -72,7 +72,7 @@
                 </div>
               </div>
               <div class="col-xl-3 col-md-6">
-                <div class="card bg-warning text-white mb-4">
+                <div class="card bg-primary text-white mb-4">
                   <div class="card-body">Feebas
                     <img class="feebasSprite">
                   </div>
@@ -80,22 +80,16 @@
                     class="card-footer d-flex align-items-center justify-content-between"
                   >
                   <input class="btn" type="button" onclick = "loadFeebas()" value="View Stats"/>
-                    <div class="small text-white">
-                      <i class="fas fa-angle-right"></i>
-                    </div>
                   </div>
                 </div>
               </div>
               <div class="col-xl-3 col-md-6">
-                <div class="card bg-success text-white mb-4">
+                <div class="card bg-primary text-white mb-4">
                   <div class="card-body">Stufful <img class="stuffulSprite"></div>
                   <div
                     class="card-footer d-flex align-items-center justify-content-between"
                   >
                   <input class="btn" type="button" onclick = "loadStufful()" value="View Stats"/>
-                    <div class="small text-white">
-                      <i class="fas fa-angle-right"></i>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -108,12 +102,12 @@
                     Evolution
                   </div>
                   <div class="card-body">
-                    <img class="prinplupSprite">
-                    <p class="evolution"></p>
-                  </div>
-                  <div class="card-body">
-                    <img class="empoleonSprite">
-                    <p class="evolution2"></p>
+                    <div>
+                        <p class="evolution" id="evolution"><img class="prinplupSprite"></p>
+                      </div>
+                      <div>
+                        <p class="evolution2"><img class="empoleonSprite"></p>
+                      </div>
                   </div>
                 </div>
               </div>
@@ -135,7 +129,7 @@
                     Locations Found
                   </div>
                   <div class="card-body">
-                    <p class="piplupArea"></p>
+                    <p class="piplupArea" id="location"></p>
                   </div>
                 </div>
               </div>

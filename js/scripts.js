@@ -127,11 +127,24 @@ function loadPiplup() {
     });
 
     document.getElementById("movesetTable_body").innerHTML = tableData;
+
+    //piplup location
+    $.getJSON(
+      "https://pokeapi.co/api/v2/pokemon/393/encounters",
+      function (piplupLocation) {
+        var location = piplupLocation[0].location_area.name;
+        console.log(location);
+
+        document.getElementById("location").innerHTML = location;
+      }
+    );
   });
 }
 
 function loadFeebas() {
   $.getJSON("https://pokeapi.co/api/v2/pokemon/feebas", function (feebas) {
+    var shinyFeebas = feebas.sprites.front_shiny;
+    $(".shinyPiplup").attr("src", shinyFeebas);
     //load moveset data in table
     feebasMoveset = feebas.moves;
 
@@ -143,6 +156,32 @@ function loadFeebas() {
     });
 
     document.getElementById("movesetTable_body").innerHTML = tableData;
+
+    //feebas evolution
+    $.getJSON(
+      "https://pokeapi.co/api/v2/evolution-chain/205/",
+      function (piplupEvo) {
+        var evolution = piplupEvo.chain.evolves_to[0].species.name;
+        $(".evolution").append(evolution);
+      }
+    );
+
+    $.getJSON("https://pokeapi.co/api/v2/pokemon/milotic", function (milotic) {
+      var miloticSprite = milotic.sprites.front_default;
+
+      $(".prinplupSprite").attr("src", miloticSprite);
+    });
+
+    //feebas location
+    $.getJSON(
+      "https://pokeapi.co/api/v2/pokemon/349/encounters",
+      function (feebasLocation) {
+        var location = feebasLocation[0].location_area.name;
+        console.log(location);
+
+        document.getElementById("location").innerHTML = location;
+      }
+    );
   });
 }
 
@@ -159,21 +198,8 @@ function loadStufful() {
     });
 
     document.getElementById("movesetTable_body").innerHTML = tableData;
-  });
-}
 
-function loadCosmog() {
-  $.getJSON("https://pokeapi.co/api/v2/pokemon/cosmog", function (cosmog) {
-    //load moveset data in table
-    cosmogMoveset = cosmog.moves;
-
-    let tableData = "";
-    cosmogMoveset.map((values) => {
-      tableData += ` <tr>
-        <td>${values.move.name}</td>
-        </tr>`;
-    });
-
-    document.getElementById("movesetTable_body").innerHTML = tableData;
+    //stufful location
+    document.getElementById("location").innerHTML = "akala-outskirts";
   });
 }
