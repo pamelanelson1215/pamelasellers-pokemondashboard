@@ -514,6 +514,10 @@ progress {
   vertical-align: baseline;
 }
 
+#wrapper {
+  display: flex;
+}
+
 [hidden] {
   display: none !important;
 }

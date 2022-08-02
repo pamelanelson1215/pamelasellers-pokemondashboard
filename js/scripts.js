@@ -15,6 +15,8 @@ var cosmogMoveset;
 
 var tableData;
 
+const img2 = document.getElementById("sprite2");
+
 window.addEventListener("DOMContentLoaded", (event) => {
   // Toggle the side navigation
   const sidebarToggle = document.body.querySelector("#sidebarToggle");
@@ -62,10 +64,10 @@ $.getJSON(
   "https://pokeapi.co/api/v2/evolution-chain/205/",
   function (piplupEvo) {
     var evolution = piplupEvo.chain.evolves_to[0].species.name;
-    $(".evolution").append(evolution);
+    document.getElementById("evolution").innerHTML = evolution;
 
     var evolution2 = piplupEvo.chain.evolves_to[0].evolves_to[0].species.name;
-    $(".evolution2").append(evolution2);
+    document.getElementById("evolution2").innerHTML = evolution2;
   }
 );
 
@@ -88,7 +90,7 @@ $.getJSON(
     var location = piplupLocation[0].location_area.name;
     console.log(location);
 
-    $(".piplupArea").append(location);
+    document.getElementById("location").innerHTML = location;
   }
 );
 
@@ -116,35 +118,69 @@ $.getJSON("https://pokeapi.co/api/v2/pokemon/cosmog", function (cosmog) {
 //btn stat events
 function loadPiplup() {
   $.getJSON("https://pokeapi.co/api/v2/pokemon/piplup", function (piplup) {
+    console.log(piplup);
+    //load piplup sprite
+    var piplupSprite = piplup.sprites.front_default;
+    var shinyPiplup = piplup.sprites.front_shiny;
+
+    $(".piplupSprite").attr("src", piplupSprite);
+    $(".shinyPiplup").attr("src", shinyPiplup);
+
     //load moveset data in table
     piplupMoveset = piplup.moves;
 
     let tableData = "";
     piplupMoveset.map((values) => {
       tableData += ` <tr>
-      <td>${values.move.name}</td>
-      </tr>`;
+    <td>${values.move.name}</td>
+    </tr>`;
     });
 
     document.getElementById("movesetTable_body").innerHTML = tableData;
-
-    //piplup location
-    $.getJSON(
-      "https://pokeapi.co/api/v2/pokemon/393/encounters",
-      function (piplupLocation) {
-        var location = piplupLocation[0].location_area.name;
-        console.log(location);
-
-        document.getElementById("location").innerHTML = location;
-      }
-    );
   });
+
+  //piplup evolution
+  $.getJSON(
+    "https://pokeapi.co/api/v2/evolution-chain/205/",
+    function (piplupEvo) {
+      var evolution = piplupEvo.chain.evolves_to[0].species.name;
+      document.getElementById("evolution").innerHTML = evolution;
+
+      var evolution2 = piplupEvo.chain.evolves_to[0].evolves_to[0].species.name;
+      document.getElementById("evolution2").innerHTML = evolution2;
+    }
+  );
+
+  $.getJSON("https://pokeapi.co/api/v2/pokemon/prinplup", function (prinplup) {
+    var prinplupSprite = prinplup.sprites.front_default;
+
+    $(".prinplupSprite").attr("src", prinplupSprite);
+  });
+
+  $.getJSON("https://pokeapi.co/api/v2/pokemon/empoleon", function (empoleon) {
+    var empoleonSprite = empoleon.sprites.front_default;
+
+    $(".empoleonSprite").attr("src", empoleonSprite);
+  });
+
+  //piplup location
+  $.getJSON(
+    "https://pokeapi.co/api/v2/pokemon/393/encounters",
+    function (piplupLocation) {
+      var location = piplupLocation[0].location_area.name;
+      console.log(location);
+
+      document.getElementById("location").innerHTML = location;
+    }
+  );
 }
 
 function loadFeebas() {
   $.getJSON("https://pokeapi.co/api/v2/pokemon/feebas", function (feebas) {
+    //shiny feebas sprite
     var shinyFeebas = feebas.sprites.front_shiny;
     $(".shinyPiplup").attr("src", shinyFeebas);
+
     //load moveset data in table
     feebasMoveset = feebas.moves;
 
@@ -159,10 +195,12 @@ function loadFeebas() {
 
     //feebas evolution
     $.getJSON(
-      "https://pokeapi.co/api/v2/evolution-chain/205/",
-      function (piplupEvo) {
-        var evolution = piplupEvo.chain.evolves_to[0].species.name;
-        $(".evolution").append(evolution);
+      "https://pokeapi.co/api/v2/evolution-chain/178/",
+      function (feebasEvo) {
+        var evolution = feebasEvo.chain.evolves_to[0].species.name;
+        document.getElementById("evolution").innerHTML = evolution;
+        document.getElementById("evolution2").innerHTML = "";
+        img2.setAttribute("src", "");
       }
     );
 
@@ -187,6 +225,27 @@ function loadFeebas() {
 
 function loadStufful() {
   $.getJSON("https://pokeapi.co/api/v2/pokemon/stufful", function (stufful) {
+    //stufful evolution
+    $.getJSON(
+      "https://pokeapi.co/api/v2/evolution-chain/391/",
+      function (stuffulEvo) {
+        var evolution = stuffulEvo.chain.evolves_to[0].species.name;
+        document.getElementById("evolution").innerHTML = evolution;
+        document.getElementById("evolution2").innerHTML = "";
+        img2.setAttribute("empoleonSprite", "");
+      }
+    );
+
+    $.getJSON("https://pokeapi.co/api/v2/pokemon/bewear", function (bewear) {
+      var bewearSprite = bewear.sprites.front_default;
+
+      $(".prinplupSprite").attr("src", bewearSprite);
+    });
+
+    //shiny feebas
+    var shinyStufful = stufful.sprites.front_shiny;
+    $(".shinyPiplup").attr("src", shinyStufful);
+
     //load moveset data in table
     stuffulMoveset = stufful.moves;
 
