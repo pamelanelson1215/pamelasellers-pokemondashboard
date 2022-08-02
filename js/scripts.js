@@ -16,6 +16,7 @@ var cosmogMoveset;
 var tableData;
 
 const img2 = document.getElementById("sprite2");
+const selectedPokemon = document.getElementById("pokemonSelected");
 
 window.addEventListener("DOMContentLoaded", (event) => {
   // Toggle the side navigation
@@ -118,6 +119,13 @@ $.getJSON("https://pokeapi.co/api/v2/pokemon/cosmog", function (cosmog) {
 //btn stat events
 function loadPiplup() {
   $.getJSON("https://pokeapi.co/api/v2/pokemon/piplup", function (piplup) {
+    selectedPokemon.innerHTML = "Piplup";
+
+    document.getElementById("shinyIcon").style.opacity = 0;
+    document.getElementById("location").style.opacity = 0;
+    document.getElementById("movesetScroll").style.opacity = 0;
+    document.getElementById("wrapper").style.opacity = 0;
+
     console.log(piplup);
     //load piplup sprite
     var piplupSprite = piplup.sprites.front_default;
@@ -125,6 +133,11 @@ function loadPiplup() {
 
     $(".piplupSprite").attr("src", piplupSprite);
     $(".shinyPiplup").attr("src", shinyPiplup);
+
+    $("#shinyIcon").fadeTo("slow", 1);
+    $("#location").fadeTo("slow", 1);
+    $("#movesetScroll").fadeTo("slow", 1);
+    $("#wrapper").fadeTo("slow", 1);
 
     //load moveset data in table
     piplupMoveset = piplup.moves;
@@ -177,9 +190,21 @@ function loadPiplup() {
 
 function loadFeebas() {
   $.getJSON("https://pokeapi.co/api/v2/pokemon/feebas", function (feebas) {
+    selectedPokemon.innerHTML = "Feebas";
+
+    document.getElementById("shinyIcon").style.opacity = 0;
+    document.getElementById("location").style.opacity = 0;
+    document.getElementById("movesetScroll").style.opacity = 0;
+    document.getElementById("wrapper").style.opacity = 0;
+
     //shiny feebas sprite
     var shinyFeebas = feebas.sprites.front_shiny;
     $(".shinyPiplup").attr("src", shinyFeebas);
+
+    $("#shinyIcon").fadeTo("slow", 1);
+    $("#location").fadeTo("slow", 1);
+    $("#movesetScroll").fadeTo("slow", 1);
+    $("#wrapper").fadeTo("slow", 1);
 
     //load moveset data in table
     feebasMoveset = feebas.moves;
@@ -225,6 +250,13 @@ function loadFeebas() {
 
 function loadStufful() {
   $.getJSON("https://pokeapi.co/api/v2/pokemon/stufful", function (stufful) {
+    selectedPokemon.innerHTML = "Stufful";
+
+    document.getElementById("shinyIcon").style.opacity = 0;
+    document.getElementById("location").style.opacity = 0;
+    document.getElementById("movesetScroll").style.opacity = 0;
+    document.getElementById("wrapper").style.opacity = 0;
+
     //stufful evolution
     $.getJSON(
       "https://pokeapi.co/api/v2/evolution-chain/391/",
@@ -245,6 +277,11 @@ function loadStufful() {
     //shiny feebas
     var shinyStufful = stufful.sprites.front_shiny;
     $(".shinyPiplup").attr("src", shinyStufful);
+
+    $("#shinyIcon").fadeTo("slow", 1);
+    $("#location").fadeTo("slow", 1);
+    $("#movesetScroll").fadeTo("slow", 1);
+    $("#wrapper").fadeTo("slow", 1);
 
     //load moveset data in table
     stuffulMoveset = stufful.moves;
